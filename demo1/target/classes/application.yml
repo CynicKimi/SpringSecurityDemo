@@ -1,0 +1,17 @@
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.28.114.83:3306/demo?useUnicode=true&characterEncoding=UTF8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+jwt:
+  #jwt存储的请求头
+  tokenHeader: Authorization
+  #jwt 加密使用密钥
+  secret: my-secret
+  #jwt 超期限时间 （60*60*24）
+  expiration: 86400
+  #jwt 负载中拿到开头
+  tokenHead: Bearer
