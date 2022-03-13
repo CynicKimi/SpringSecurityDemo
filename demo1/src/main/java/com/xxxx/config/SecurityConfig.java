@@ -1,6 +1,7 @@
 package com.xxxx.config;
 
 import com.xxxx.filter.JwtAuthenticationTokenFilter;
+import com.xxxx.filter.MobileAuthenticationFilter;
 import com.xxxx.handler.AuthAccessDeniedHandler;
 import com.xxxx.handler.AuthLogoutSuccessHandler;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.annotation.Resource;
 
 @Configuration
+//@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -30,6 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
+    @Resource
+    private MobileAuthenticationFilter mobileAuthenticationFilter;
 
     @Resource
     private AuthenticationSuccessHandler authenticationSuccessHandler;
@@ -82,6 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //JWTtoken认证过滤器
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        //手机号登录认证过滤器
+        http.addFilterBefore(mobileAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

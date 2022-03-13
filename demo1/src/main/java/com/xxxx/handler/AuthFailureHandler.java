@@ -24,7 +24,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
         PrintWriter out = httpServletResponse.getWriter();
         //此打印流对象可向浏览器输出信息
 
-        RespBean respBean = RespBean.error("用户名或密码错误");
+        RespBean respBean = RespBean.error(e.getMessage());
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.valueToTree(respBean);
 
